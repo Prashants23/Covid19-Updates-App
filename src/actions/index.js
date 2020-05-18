@@ -25,17 +25,23 @@
 import axios from 'axios';
 
 export function loadColor() {
-    // console.log("caleed ghm")
+  // console.log("caleed ghm")
   return dispatch => {
-    return axios
-      .get('http://covid19-india-adhikansh.herokuapp.com/states')
-      .then(response => {
-        console.log(response.data.state);
-        dispatch(changeState(response.data.state));
-      })
-      .catch(err => {
-        console.log("this is error message",err.message);
-      });
+    return (
+      axios
+        // .get('http://covid19-india-adhikansh.herokuapp.com/states')
+        .get('https://covid-19india-api.herokuapp.com/v2.0/state_data')
+        .then(response => {
+          // console.log(
+          //   'NEW API ---------------------------------------------------------------------',
+          //   response.data[1].state_data,
+          // );
+          dispatch(changeState(response.data[1].state_data));
+        })
+        .catch(err => {
+          console.log('this is error message', err.message);
+        })
+    );
   };
 }
 
@@ -43,5 +49,27 @@ export function changeState(StateName) {
   return {
     type: 'CHANGE_STATE',
     StateName: StateName,
+  };
+}
+
+export function totalCasesIndia() {
+  // console.log("caleed ghm")
+  return dispatch => {
+    return axios
+      .get('https://covid-19india-api.herokuapp.com/v2.0/country_data')
+      .then(response => {
+        // console.log(response.data[1]);
+        dispatch(totalCases(response.data[1]));
+      })
+      .catch(err => {
+        console.log('this is error message', err.message);
+      });
+  };
+}
+
+export function totalCases(Cases) {
+  return {
+    type: 'TOTAL_CASES',
+    TotalCases: Cases,
   };
 }

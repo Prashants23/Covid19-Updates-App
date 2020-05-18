@@ -105,23 +105,25 @@ class States extends React.Component {
       <TouchableOpacity
         style={[styles.statesContainer]}
         onPress={this.props.testClick}>
-        <Text style={[styles.dataStateNameTextStyles]}>{item.name}</Text>
+        <Text style={[styles.dataStateNameTextStyles]}>{item.state}</Text>
         <View style={[styles.dataContainer]}>
           <Text style={[styles.casesTextStyle, {color: 'green'}]}>
-            Cured Cases: {item.cured}
+            Recovered rate: {item.recovered_rate}
           </Text>
           <Text style={[styles.casesTextStyle, {color: '#f00707'}]}>
+            Active Cases: {item.active}
+          </Text>
+          <Text style={[styles.casesTextStyle]}>
             Confirmed Cases: {item.confirmed}
           </Text>
-          <Text style={[styles.casesTextStyle]}>Total Cases: {item.total}</Text>
         </View>
       </TouchableOpacity>
     );
   }
   render() {
-    console.log("this is state name from box component",this.state.StateNames);
+    console.log('this is state name from box component', this.state.StateNames);
     const filteredStates = this.state.StateNames.filter(State => {
-      return State.name
+      return State.state
         .toLowerCase()
         .includes(this.state.inputedState.toLowerCase());
     });
