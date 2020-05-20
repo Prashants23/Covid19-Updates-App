@@ -17,7 +17,7 @@ const mainReducer = (state = defaultState, action) => {
   //   };
   // }
   switch (action.type) {
-    case 'CHANGE_COLOR':
+    case 'CHANGE_STATE':
       return {
         ...state,
         StateName: action.StateName,

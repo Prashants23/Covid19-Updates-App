@@ -13,9 +13,13 @@
     "axios": "^0.19.2",
     "react": "16.11.0",
     "react-native": "0.62.2",
-    "react-redux": "^7.2.0",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "react-native-elements": "^2.0.0",
+    "react-native-svg": "^6.5.3",
+    "react-native-svg-charts": "5.4.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-redux": "7.2.0",
+    "redux": "4.0.5",
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

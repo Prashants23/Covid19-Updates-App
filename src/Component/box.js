@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     justifyContent: 'center',
-    backgroundColor: '#2b2e33',
+    backgroundColor: '#c7e1f0',
   },
   buttonStyle: {
     width: 200,
@@ -51,28 +51,31 @@ const styles = StyleSheet.create({
     width: '47%',
     marginLeft: 10,
     // backgroundColor: '#12354d',
-    backgroundColor: '#091933',
+    // backgroundColor: '#091933',
+    backgroundColor:"#63cdf7",
     marginVertical: 5,
     paddingLeft: 12,
     paddingRight: 10,
-    height: 150,
+    height: 160,
     paddingTop: 10,
     borderRadius: 10,
-    elevation: 7,
+    elevation: 6,
   },
   dataContainer: {
-    marginVertical: 10,
+    marginVertical: 5,
   },
   dataStateNameTextStyles: {
     fontSize: 19,
     fontWeight: 'bold',
     color: '#3f8596',
+    paddingTop:2
   },
   casesTextStyle: {
-    fontSize: 16,
-    letterSpacing: 0.25,
+    fontSize: 17,
+    letterSpacing: 0.5,
     color: 'red',
     marginVertical: 1,
+    fontWeight:'bold'
   },
 });
 class States extends React.Component {
@@ -101,14 +104,20 @@ class States extends React.Component {
     this.setState({inputedState: event, ifSubmitButton: false});
   };
   renderListItem(item) {
+    // const randomColor = () =>
+    //   ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(
+    //     0,
+    //     7,
+    //   );
+
     return (
       <TouchableOpacity
         style={[styles.statesContainer]}
         onPress={this.props.testClick}>
         <Text style={[styles.dataStateNameTextStyles]}>{item.state}</Text>
         <View style={[styles.dataContainer]}>
-          <Text style={[styles.casesTextStyle, {color: 'green'}]}>
-            Recovered rate: {item.recovered_rate}
+          <Text style={[styles.casesTextStyle, {color: 'green',fontSize:20}]}>
+            Recovered : {item.recovered}
           </Text>
           <Text style={[styles.casesTextStyle, {color: '#f00707'}]}>
             Active Cases: {item.active}
@@ -121,7 +130,7 @@ class States extends React.Component {
     );
   }
   render() {
-    console.log('this is state name from box component', this.state.StateNames);
+    console.log('this is state name from box component', this.props.StateName);
     const filteredStates = this.state.StateNames.filter(State => {
       return State.state
         .toLowerCase()

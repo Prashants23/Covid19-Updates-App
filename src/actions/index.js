@@ -32,10 +32,10 @@ export function loadColor() {
         // .get('http://covid19-india-adhikansh.herokuapp.com/states')
         .get('https://covid-19india-api.herokuapp.com/v2.0/state_data')
         .then(response => {
-          // console.log(
-          //   'NEW API ---------------------------------------------------------------------',
-          //   response.data[1].state_data,
-          // );
+          console.log(
+            'NEW API ---------------------------------------------------------------------',
+            response.data[1].state_data,
+          );
           dispatch(changeState(response.data[1].state_data));
         })
         .catch(err => {
