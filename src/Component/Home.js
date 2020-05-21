@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     // justifyContent:'center',
     alignItems: 'center',
     // backgroundColor: '#323E41',
-    backgroundColor: '#d9eefa',
+    // backgroundColor: '#d9eefa',
     width: '100%',
     height: '100%',
   },
@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     // marginTop:10,
     marginLeft: 10,
     fontSize: 14,
-    color: '#5c5a57',
+    // color: '#5c5a57',
+    color:'#496c75',
     letterSpacing: 1,
   },
   dataTextStyles: {
@@ -48,20 +49,20 @@ const styles = StyleSheet.create({
     //   justifyContent:'center',
     //   alignItems:'center',
     marginTop: 20,
-    // borderWidth: 2,
-    // borderColor: '#bd780f',
+    borderWidth: 1,
+    borderColor: '#496c75',
     width: '100%',
     paddingLeft: 25,
     paddingVertical: 10,
-    backgroundColor: '#b2d6eb',
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
-    elevation: 6,
+    // backgroundColor: '#b2d6eb',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    // elevation: 6,
     borderRadius: 20,
     paddingBottom: 20,
   },
   buttonStyle: {
-    width: 180,
+    width: 140,
     height: 50,
     // textAlign: 'center',
     alignItems: 'center',
@@ -132,16 +133,16 @@ class Home extends React.Component {
         <ScrollView style={{width: '98%'}}>
           <View style={{flexDirection: 'row', marginTop: 40}}>
             <PieChart
-              style={{height: 150, width: 150, marginRight: 15, marginLeft: 10}}
-              outerRadius={75}
-              innerRadius={0}
-              padAngle={0}
+              style={{height: 120, width: 120, marginRight: 15, marginLeft: 10}}
+              outerRadius={60}
+              innerRadius={2}
+              // padAngle={0}
               data={pieData}
             />
             <View
               style={{
                 marginTop: 5,
-                backgroundColor: 'yellow',
+                // backgroundColor: 'yellow',
                 width: 240,
                 paddingLeft: 20,
                 borderRadius: 15,
@@ -243,7 +244,7 @@ class Home extends React.Component {
           <View
             style={{
               flexDirection: 'row',
-              marginVertical: 30,
+              marginVertical: 10,
               justifyContent: 'center',
             }}>
             <Buttons
@@ -256,6 +257,7 @@ class Home extends React.Component {
               title={'District Wise Data'}
               ButtonStyle={[styles.buttonStyle]}
               textStyle={[styles.ButtonTextStyle]}
+              // onsubmit={()=>this.props.HelpLineNo()}
             />
           </View>
         </ScrollView>

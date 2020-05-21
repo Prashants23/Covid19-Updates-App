@@ -6,15 +6,20 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import Buttons from '../Component/atoms/buttons';
+
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   Container: {
     alignItems: 'center',
     height: '100%',
     justifyContent: 'center',
-    backgroundColor: '#c7e1f0',
+    // backgroundColor: '#c7e1f0',
+    // backgroundColor: 'red',
   },
   buttonStyle: {
     width: 200,
@@ -37,8 +42,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginVertical: 25,
     borderWidth: 0,
-    backgroundColor: '#d5e2f5',
-    elevation: 8,
+    // backgroundColor: '#d5e2f5',
+    elevation: 3,
   },
   pagetitle: {
     fontSize: 25,
@@ -48,39 +53,41 @@ const styles = StyleSheet.create({
     marginTop: 28,
   },
   statesContainer: {
-    width: '47%',
-    marginLeft: 10,
+    width: '95%',
+    // marginLeft: 10,
     // backgroundColor: '#12354d',
     // backgroundColor: '#091933',
-    backgroundColor:"#63cdf7",
+    // backgroundColor: '#63cdf7',
+    backgroundColor: 'white',
     marginVertical: 5,
     paddingLeft: 12,
     paddingRight: 10,
-    height: 160,
+    height: 130,
     paddingTop: 10,
     borderRadius: 10,
-    elevation: 6,
+    borderWidth: 1,
+    elevation: 4,
   },
   dataContainer: {
-    marginVertical: 5,
+    marginVertical: 15,
   },
   dataStateNameTextStyles: {
-    fontSize: 19,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#3f8596',
-    paddingTop:2
+    paddingTop: 2,
   },
   casesTextStyle: {
     fontSize: 17,
     letterSpacing: 0.5,
     color: 'red',
     marginVertical: 1,
-    fontWeight:'bold'
+    fontWeight: 'bold',
   },
 });
 class States extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       StateNames: [],
       ifSubmitButton: true,
@@ -90,16 +97,14 @@ class States extends React.Component {
 
   componentDidMount() {
     this.props.handleClick();
-    this.setStateNames();
+    this.setState({StateNames: this.props.StateName});
+    // this.setStateNames();
   }
   setStateNames = () => {
     this.setState({StateNames: this.props.StateName});
     // console.log("hbjghuh iiiiiiiii")
   };
 
-  //   onSubmit = () => {
-  //     console.log(this.state.data);
-  //   };
   onInputChange = event => {
     this.setState({inputedState: event, ifSubmitButton: false});
   };
@@ -112,37 +117,41 @@ class States extends React.Component {
 
     return (
       <TouchableOpacity
-        style={[styles.statesContainer]}
-        onPress={this.props.testClick}>
-        <Text style={[styles.dataStateNameTextStyles]}>{item.state}</Text>
-        <View style={[styles.dataContainer]}>
-          <Text style={[styles.casesTextStyle, {color: 'green',fontSize:20}]}>
-            Recovered : {item.recovered}
-          </Text>
-          <Text style={[styles.casesTextStyle, {color: '#f00707'}]}>
-            Active Cases: {item.active}
-          </Text>
-          <Text style={[styles.casesTextStyle]}>
-            Confirmed Cases: {item.confirmed}
-          </Text>
+        onPress={this.props.testClick}
+        style={{width: Width - 10, alignItems: 'center'}}>
+        <View style={[styles.statesContainer]}>
+          <Text style={[styles.dataStateNameTextStyles]}>{item.state}</Text>
+          <View style={[styles.dataContainer]}>
+            <Text
+              style={[styles.casesTextStyle, {color: 'green', fontSize: 20}]}>
+              Recovered : {item.recovered}
+            </Text>
+            <Text style={[styles.casesTextStyle, {color: '#f00707'}]}>
+              Active Cases: {item.active}
+            </Text>
+            <Text style={[styles.casesTextStyle]}>
+              Confirmed Cases: {item.confirmed}
+            </Text>
+          </View>
         </View>
       </TouchableOpacity>
     );
   }
   render() {
+    // var {data}=this.props.StateName;
     console.log('this is state name from box component', this.props.StateName);
-    const filteredStates = this.state.StateNames.filter(State => {
+    const filteredStates = this.props.StateName.filter(State => {
       return State.state
         .toLowerCase()
         .includes(this.state.inputedState.toLowerCase());
     });
     return (
       <View style={styles.Container}>
-        <Text style={styles.pagetitle}>COVID 19 Updates</Text>
+        <Text style={styles.pagetitle}>COVID 19 UPDATES</Text>
         <View />
         <TextInput
           style={styles.InputBoxStyle}
-          placeholder="Enter State"
+          placeholder="Enter Your State"
           onChangeText={event => this.onInputChange(event)}
         />
         {/* <Buttons
@@ -156,7 +165,7 @@ class States extends React.Component {
           keyExtractor={item => item.id}
           data={filteredStates}
           // style={{height:300}}
-          numColumns={2}
+          numColumns={1}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => this.renderListItem(item)}
         />

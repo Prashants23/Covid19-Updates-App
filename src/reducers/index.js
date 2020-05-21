@@ -1,6 +1,7 @@
 let defaultState = {
   StateName: [],
   TotalCases: [],
+  NumbersData: [],
 };
 
 const mainReducer = (state = defaultState, action) => {
@@ -26,6 +27,11 @@ const mainReducer = (state = defaultState, action) => {
       return {
         ...state,
         TotalCases: action.TotalCases,
+      };
+    case 'HELPLINE_NO':
+      return {
+        ...state,
+        NumbersData: action.NumbersData,
       };
     default:
       return state;

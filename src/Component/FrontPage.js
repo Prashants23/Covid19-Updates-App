@@ -1,19 +1,21 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import Buttons from './atoms/buttons';
+import {Actions} from 'react-native-router-flux';
+
 const styles = StyleSheet.create({
   butonStyle: {
     // backgroundColor: 'blue',
     paddingVertical: 10,
     // paddingHorizontal:20,
-    width: 200,
+    width: 150,
     height: 55,
     borderRadius: 12,
     elevation: 4,
     justifyContent: 'center',
     marginHorizontal: 6,
     borderWidth: 2,
-    borderColor:'#3e6d80'
+    borderColor: '#3e6d80',
   },
   textStyle: {
     textAlign: 'center',
@@ -26,7 +28,7 @@ class FrontPage extends React.Component {
     return (
       <View style={{alignItems: 'center'}}>
         <Image
-          style={{height: 230, width: 230, marginTop: 100}}
+          style={{height: 200, width: 200, marginTop: 50}}
           source={require('../assets/covidImage.png')}
         />
         <View
@@ -51,11 +53,12 @@ class FrontPage extends React.Component {
             Stay Safe
           </Text>
         </View>
-        <View style={{flexDirection: 'row', marginTop: 100}}>
+        <View style={{flexDirection: 'row', marginTop: 70}}>
           <Buttons
             title={"India's Stats"}
             ButtonStyle={styles.butonStyle}
             textStyle={styles.textStyle}
+            onsubmit={() => Actions.push('BoxCon')}
           />
           <Buttons
             title={'News'}
@@ -68,9 +71,15 @@ class FrontPage extends React.Component {
             title={'Covid Helpline'}
             ButtonStyle={styles.butonStyle}
             textStyle={styles.textStyle}
+            onsubmit={() => Actions.push('helplineNo')}
           />
         </View>
-        <View style={{marginTop:60}}><Text style={{textAlign:'center'}}>All the data on this plateform has been fetched from these Reasources</Text></View>
+        <View style={{marginTop: 60}}>
+          <Text style={{textAlign: 'center'}}>
+            All the data on this plateform has been fetched from these
+            Resources
+          </Text>
+        </View>
       </View>
     );
   }

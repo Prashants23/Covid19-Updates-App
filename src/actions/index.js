@@ -73,3 +73,28 @@ export function totalCases(Cases) {
     TotalCases: Cases,
   };
 }
+
+
+// Helpline Number
+
+export function HelpLineNo() {
+  // console.log("caleed ghm")
+  return dispatch => {
+    return axios
+      .get('https://covid-19india-api.herokuapp.com/v2.0/helpline_numbers')
+      .then(response => {
+        console.log(response.data[1].contact_details);
+        dispatch(helplineNos(response.data[1].contact_details));
+      })
+      .catch(err => {
+        console.log('this is error message', err.message);
+      });
+  };
+}
+
+export function helplineNos(Numbers) {
+  return {
+    type: 'HELPLINE_NO',
+    NumbersData: Numbers,
+  };
+}
