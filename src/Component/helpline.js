@@ -15,8 +15,8 @@ const Height = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   Container: {
     alignItems: 'center',
-    height: Height,
-    width: Width,
+    height: '100%',
+    justifyContent: 'center',
     // justifyContent: 'center',
     // backgroundColor: '#c7e1f0',
     // backgroundColor: 'red',
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     // paddingRight: 10,
     height: 110,
     paddingTop: 10,
-    borderRadius: 10,
-    borderWidth: 1,
+    // borderRadius: 10,
+    // borderWidth: 1,
     elevation: 4,
     alignItems: 'center',
   },
@@ -88,10 +88,10 @@ class HelplineNumbers extends React.Component {
   setNumbersData = () => {
     this.setState({NumbersData: this.props.NumbersData});
   };
-  callApi = () => {
-    this.props.HelpLineNo();
-    this.setNumbersData();
-  };
+  // callApi = () => {
+  //   this.props.HelpLineNo();
+  //   this.setNumbersData();
+  // };
   renderListItem(data) {
     return (
       <View style={styles.statesContainer}>
@@ -118,31 +118,36 @@ class HelplineNumbers extends React.Component {
     });
     // const helplineData = this.props.NumbersData;
     return (
-      <View style={styles.Container}>
-        <Text style={styles.pagetitle}>Helpline Numbers</Text>
-        <TextInput
-          style={styles.InputBoxStyle}
-          placeholder="Enter State"
-          onChangeText={event => this.onInputChange(event)}
-        />
-        <View
-          style={{alignItems: 'center', width: Width, height: Height - 190}}>
-          {this.props.NumbersData.length === 0 ? (
-            <Text onPress={this.callApi}>Refresh</Text>
-          ) : (
-            // <View style={{marginTop: 20,alignItems:'center',width:"100%"}}>
-            <FlatList
-              keyExtractor={item => item.state_or_UT}
-              data={filteredStates}
-              // contentContainerStyle={{alignItems:'center',width:"90%",}}
-              numColumns={1}
-              showsVerticalScrollIndicator={false}
-              renderItem={({item}) => this.renderListItem(item)}
+      <View>
+        {this.props.NumbersData.length === 0 ? (
+          <Text>loading....</Text>
+        ) : (
+          <View style={styles.Container}>
+            <TextInput
+              style={styles.InputBoxStyle}
+              placeholder="Enter State"
+              onChangeText={event => this.onInputChange(event)}
             />
-            // </View>
-          )}
-        </View>
+            {/* <View
+              style={{
+                alignItems: 'center',
+                width: Width,
+                height: Height-180,
+              }}> */}
+              {/* <View style={{marginTop: 20,alignItems:'center',width:"100%"}}> */}
+              <FlatList
+                keyExtractor={item => item.state_or_UT}
+                data={filteredStates}
+                // contentContainerStyle={{alignItems:'center',width:"90%",}}
+                numColumns={1}
+                showsVerticalScrollIndicator={false}
+                renderItem={({item}) => this.renderListItem(item)}
+              />
+            {/* </View> */}
+          </View>
+        )}
       </View>
+      // </View>
     );
   }
 }

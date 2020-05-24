@@ -1,21 +1,23 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet,Dimensions} from 'react-native';
 import Buttons from './atoms/buttons';
 import {Actions} from 'react-native-router-flux';
-
+const Width = Dimensions.get('window').width;
+const Height = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   butonStyle: {
     // backgroundColor: 'blue',
     paddingVertical: 10,
     // paddingHorizontal:20,
-    width: 150,
-    height: 55,
+    width: 120,
+    // height: 45,
     borderRadius: 12,
-    elevation: 4,
+    elevation: 3,
     justifyContent: 'center',
     marginHorizontal: 6,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#3e6d80',
+    backgroundColor: 'white',
   },
   textStyle: {
     textAlign: 'center',
@@ -64,6 +66,7 @@ class FrontPage extends React.Component {
             title={'News'}
             ButtonStyle={styles.butonStyle}
             textStyle={styles.textStyle}
+            onsubmit={() => Actions.push('News')}
           />
         </View>
         <View style={{marginTop: 10}}>
@@ -75,11 +78,42 @@ class FrontPage extends React.Component {
           />
         </View>
         <View style={{marginTop: 60}}>
-          <Text style={{textAlign: 'center'}}>
-            All the data on this plateform has been fetched from these
-            Resources
+          <Text style={{textAlign: 'center', width: 200}}>
+            All the data on this platform has been fetched from these
+            <Text
+              onPress={() => Actions.push('Resources')}
+              style={{color: 'blue', fontSize: 18}}>
+              {' '}
+              Resources{' '}
+            </Text>
           </Text>
         </View>
+
+
+
+
+
+
+        {/* <View style={{backgroundColor:'#326d8c',height:"40%",width:Width}}>
+          <View style={{backgroundColor:'white',height:'100%',width:"100%",borderBottomRightRadius:80,flexDirection:'row'}}>
+          <Image
+          style={{height: 200, width: 150, marginTop: 20}}
+          source={require('../assets/Covid.png')}
+        />
+         <Image
+          style={{height: 100, width: 250, marginTop: 50}}
+          source={require('../assets/Logo5.png')}
+        />
+        </View>
+        </View>
+        <View style={{backgroundColor:'white',height:"60%",width:Width}}>
+          <View style={{backgroundColor:'#326d8c',height:'100%',width:"100%",borderTopLeftRadius:80}}>
+          <Image
+          style={{height: 200, width: 200, marginTop: 50}}
+          source={require('../assets/Logo4.png')}
+        />
+        </View>
+        </View> */}
       </View>
     );
   }

@@ -2,6 +2,8 @@ let defaultState = {
   StateName: [],
   TotalCases: [],
   NumbersData: [],
+  DistrictTotalData: [{test: {Test: 'ghjh,'}}],
+  DistrictNames: [],
 };
 
 const mainReducer = (state = defaultState, action) => {
@@ -32,6 +34,12 @@ const mainReducer = (state = defaultState, action) => {
       return {
         ...state,
         NumbersData: action.NumbersData,
+      };
+    case 'TOTAL_DISTRICT_CASES':
+      return {
+        ...state,
+        DistrictTotalData: action.DistrictTotalData,
+        DistrictNames: action.DistrictNames,
       };
     default:
       return state;

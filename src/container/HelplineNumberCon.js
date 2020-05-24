@@ -23,7 +23,6 @@ class HelplineNumbersCon extends React.Component {
           NumbersData={this.props.NumbersData}
           HelpLineNo={this.props.HelpLineNo}
         />
-        <Text>yjkjhk</Text>
       </View>
     );
   }

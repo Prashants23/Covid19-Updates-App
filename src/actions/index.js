@@ -32,10 +32,10 @@ export function loadColor() {
         // .get('http://covid19-india-adhikansh.herokuapp.com/states')
         .get('https://covid-19india-api.herokuapp.com/v2.0/state_data')
         .then(response => {
-          console.log(
-            'NEW API ---------------------------------------------------------------------',
-            response.data[1].state_data,
-          );
+          // console.log(
+          //   'NEW API ---------------------------------------------------------------------',
+          //   response.data[1].state_data,
+          // );
           dispatch(changeState(response.data[1].state_data));
         })
         .catch(err => {
@@ -54,16 +54,16 @@ export function changeState(StateName) {
 
 export function totalCasesIndia() {
   // console.log("caleed ghm")
-  return dispatch => {
-    return axios
-      .get('https://covid-19india-api.herokuapp.com/v2.0/country_data')
-      .then(response => {
-        // console.log(response.data[1]);
-        dispatch(totalCases(response.data[1]));
-      })
-      .catch(err => {
-        console.log('this is error message', err.message);
-      });
+  return async dispatch => {
+    try {
+      const response = await axios.get(
+        'https://covid-19india-api.herokuapp.com/v2.0/country_data',
+      );
+      // console.log(response.data[1]);
+      dispatch(totalCases(response.data[1]));
+    } catch (err) {
+      console.log('this is error message', err.message);
+    }
   };
 }
 
@@ -73,22 +73,46 @@ export function totalCases(Cases) {
     TotalCases: Cases,
   };
 }
+// District Data
 
+export function DistrictData(data) {
+  // console.log("caleed ghm")
+  return async dispatch => {
+    try {
+      const response = await axios.get(
+        'https://api.covid19india.org/state_district_wise.json',
+      );
+      const x = response.data[data];
+      // console.log(x["districtData"]);
+      dispatch(districtCases(Object.keys(x.districtData), x.districtData));
+    } catch (err) {
+      console.log('this is error message', err.message);
+    }
+  };
+}
+
+export function districtCases(districtNames, districtData) {
+  return {
+    type: 'TOTAL_DISTRICT_CASES',
+    DistrictTotalData: districtData,
+    DistrictNames: districtNames,
+  };
+}
 
 // Helpline Number
 
 export function HelpLineNo() {
   // console.log("caleed ghm")
-  return dispatch => {
-    return axios
-      .get('https://covid-19india-api.herokuapp.com/v2.0/helpline_numbers')
-      .then(response => {
-        console.log(response.data[1].contact_details);
-        dispatch(helplineNos(response.data[1].contact_details));
-      })
-      .catch(err => {
-        console.log('this is error message', err.message);
-      });
+  return async dispatch => {
+    try {
+      const response = await axios.get(
+        'https://covid-19india-api.herokuapp.com/v2.0/helpline_numbers',
+      );
+      console.log(response.data[1].contact_details);
+      dispatch(helplineNos(response.data[1].contact_details));
+    } catch (err) {
+      console.log('this is error message', err.message);
+    }
   };
 }
 

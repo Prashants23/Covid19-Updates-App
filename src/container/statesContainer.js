@@ -2,13 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {View, Text, StyleSheet} from 'react-native';
 import * as actionCreators from '../actions/index.js';
-// import States from '../Component/box';
-// import Buttons from '../Component/atoms/buttons.js';
-// import {PieChart} from 'react-native-svg-charts';
-// import {Tooltip} from 'react-native-elements';
-// import Home from '../Component/Home.js';
-// import FrontPage from '../Component/FrontPage.js';
-import IndiaStats from '../Component/IndiasStats.js';
+import States from '../Component/box';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -17,17 +11,18 @@ const styles = StyleSheet.create({
   },
 });
 
-class BoxCon extends React.Component {
+class StatesCon extends React.Component {
   render() {
     // console.log('in Box-container', this.props.StateName);
     return (
       <View style={[styles.mainContainer]}>
-        {/* <Home /> */}
-        <IndiaStats
+        <States
           handleClick={this.props.loadColor}
           StateName={this.props.StateName}
-          countryDataClick={this.props.totalCasesIndia}
-          countryData={this.props.TotalCases}
+          selectedStateName={this.props.selectedStateName}
+          DistrictFuncClick={this.props.DistrictData}
+          DistrictTotalData={this.props.DistrictTotalData}
+          DistrictNames={this.props.DistrictNames}
         />
       </View>
     );
@@ -41,4 +36,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   actionCreators,
-)(BoxCon);
+)(StatesCon);
