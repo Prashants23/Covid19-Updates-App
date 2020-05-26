@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   statesDataContainer: {
     marginTop: 20,
-    height: "68%",
+    height: '68.5%',
     width: Width - 30,
     backgroundColor: 'white',
     elevation: 3,
@@ -92,11 +92,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   StatesHeaderText: {
-    // width: "23%",
-    // alignItems: 'center',
     textAlign: 'center',
     fontSize: 16,
     color: '#5c5454',
+    width: 75,
   },
   statesContainer: {
     flexDirection: 'row',
@@ -106,18 +105,18 @@ const styles = StyleSheet.create({
     height: 60,
     // justifyContent:'center'
     alignItems: 'center',
-    marginLeft:10
+    marginLeft: 10,
   },
   dataStateNameTextStyles: {
-    width: "30%",
+    width: '30%',
     textAlign: 'center',
-    fontSize:16,
-    letterSpacing:0.5
+    fontSize: 16,
+    letterSpacing: 0.5,
   },
   casesTextStyle: {
-    width: "25.4%",
+    width: '25.4%',
     textAlign: 'center',
-    letterSpacing:0.5
+    letterSpacing: 0.5,
   },
   CountryDataNo: {
     marginTop: 6,
@@ -125,8 +124,8 @@ const styles = StyleSheet.create({
 });
 
 class IndiaStats extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       ifStateModal: false,
       statename: '',
@@ -141,6 +140,8 @@ class IndiaStats extends React.Component {
   };
   CloseStateModal = () => {
     this.setState({ifStateModal: false});
+    // this.props.DistrictTotalData = [];
+    this.props.CallClearData();
   };
 
   renderListItem(item) {
@@ -177,7 +178,12 @@ class IndiaStats extends React.Component {
                 </Text>
               </View>
 
-              <View style={{width: '40%', alignItems: 'flex-end',justifyContent:'center'}}>
+              <View
+                style={{
+                  width: '40%',
+                  alignItems: 'flex-end',
+                  justifyContent: 'center',
+                }}>
                 <View>
                   <Image
                     style={styles.headerImage}
@@ -245,14 +251,14 @@ class IndiaStats extends React.Component {
             <View style={{width: Width, alignItems: 'center'}}>
               <View style={styles.statesDataContainer}>
                 <View style={styles.statesHeaderTextContainer}>
-                  <Text style={[styles.StatesHeaderText, {width:"32%"}]}>
+                  <Text style={[styles.StatesHeaderText, {width: '32%'}]}>
                     State/UT
                   </Text>
                   <Text style={styles.StatesHeaderText}>Total Cases</Text>
                   <Text style={styles.StatesHeaderText}>Death</Text>
                   <Text style={styles.StatesHeaderText}>Recovered</Text>
                 </View>
-                <View style={{height: "83%"}}>
+                <View style={{height: '83%'}}>
                   <FlatList
                     keyExtractor={item => item.id}
                     data={this.props.StateName}
@@ -266,15 +272,19 @@ class IndiaStats extends React.Component {
             </View>
           </View>
         ) : (
-          <View style={{width:Width,height:Height,justifyContent:'center'}}>
-          <Text style={{textAlign:'center',fontSize:16}}>Loading....</Text>
+          <View
+            style={{width: Width, height: Height, justifyContent: 'center'}}>
+            <Text style={{textAlign: 'center', fontSize: 16}}>Loading....</Text>
           </View>
         )}
         <Modal
           visible={this.state.ifStateModal}
           onRequestClose={this.CloseStateModal}
           animationType="fade">
-          <StatesCon selectedStateName={this.state.statename} />
+          <StatesCon
+            selectedStateName={this.state.statename}
+            backButton={this.CloseStateModal}
+          />
         </Modal>
       </View>
     );

@@ -77,20 +77,23 @@ const styles = StyleSheet.create({
   DistrictDataContainer: {
     // backgroundColor: '#243e4a',
     backgroundColor: 'white',
-    width: Width-10,
+    width: Width - 10,
     height: Height,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     // backgroundColor: '#c7e1f0',
     elevation: 6,
     marginTop: 20,
   },
   districtData: {
-    width: '25%',
+    width: 75,
     // height: 30,
     fontSize: 16,
     textAlign: 'center',
     letterSpacing: 1,
+    // backgroundColor:'red',
+    // marginHorizontal:2
+    marginLeft: 1,
     // flex:0.20,
   },
   statesHeaderTextContainer: {
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#c44b1b',
   },
   StatesHeaderText: {
-    width: "22%",
+    width: '22%',
     // alignItems: 'center',
     textAlign: 'center',
     fontSize: 16,
@@ -119,6 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     marginLeft: 10,
+    width: '60%',
   },
 });
 class States extends React.Component {
@@ -150,6 +154,10 @@ class States extends React.Component {
   onInputChange = event => {
     this.setState({inputedState: event, ifSubmitButton: false});
   };
+  clearData = () => {
+    this.props.backButton();
+    this.props.CallClearData();
+  };
   renderListStateData(item) {
     // const randomColor = () =>
     //   ('#' + ((Math.random() * 0xffffff) << 0).toString(16) + '000000').slice(
@@ -163,23 +171,43 @@ class States extends React.Component {
           style={{
             backgroundColor: '#12394d',
             width: Width,
+            flexDirection: 'row',
+            // justifyContent:'center'
           }}>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              color: 'white',
-              marginVertical: 20,
-            }}>
-            Covid19 Data of {item.state}
-          </Text>
+          <TouchableOpacity onPress={this.props.backButton}>
+            <View
+              style={{
+                marginVertical: 22,
+                width: 30,
+                marginLeft: 5,
+                alignItems: 'flex-start',
+                justifyContent: 'center',
+              }}>
+              <Image
+                style={{height: 15, width: 15}}
+                source={require('../assets/arrowback.png')}
+              />
+              {/* <Text onPress={() => Actions.pop('News')}>test</Text> */}
+            </View>
+          </TouchableOpacity>
+          <View style={{width: Width - 40}}>
+            <Text
+              style={{
+                fontSize: 20,
+                textAlign: 'center',
+                color: 'white',
+                marginVertical: 20,
+              }}>
+              Covid19 Data of {item.state}
+            </Text>
+          </View>
         </View>
         <View style={styles.situationTextContainer}>
           <Text style={styles.situationText}>Situation in {item.state}</Text>
           <View
             style={{
               width: '50%',
-              alignItems: 'flex-end',
+              alignItems: 'center',
               justifyContent: 'center',
             }}>
             <Image
@@ -265,16 +293,19 @@ class States extends React.Component {
           borderBottomWidth: 1,
           color: 'gray',
           height: 50,
-          width: "33%",
-          alignItems: 'center',
+
+          // width:150,
+          // alignItems: 'center',
           justifyContent: 'center',
-          marginLeft: 10,
+          // marginLeft: 10,
+          // backgroundColor:'red'
         }}>
         <Text
           style={{
             fontSize: 17,
             letterSpacing: 0.5,
-            // width: 110,
+            // textAlign:'center'
+            width: 100,
             marginLeft: 10,
           }}>
           {item}
@@ -291,7 +322,7 @@ class States extends React.Component {
           marginRight: 20,
           justifyContent: 'center',
           alignItems: 'center',
-          width: '95%',
+          width: 250,
           height: 50,
           marginRight: 10,
         }}>
@@ -306,10 +337,10 @@ class States extends React.Component {
     );
   }
   render() {
-    console.log(
-      'this is state name from box component +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++',
-      this.props.DistrictTotalData,
-    );
+    // console.log(
+    //   'this is state name from box component +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++',
+    //   this.props.DistrictTotalData,
+    // );
     const Values = Object.values(this.props.DistrictTotalData);
     // console.log(Values);
     const filteredStates = this.props.StateName.filter(State => {
@@ -319,6 +350,7 @@ class States extends React.Component {
     });
     return (
       <View style={styles.Container}>
+        {/* <Buttons title="back" onsubmit={this.clearData} /> */}
         <ScrollView nestedScrollEnabled={true}>
           <View style={{height: 340}}>
             {this.props.StateName.length === 0 ? (
@@ -340,7 +372,7 @@ class States extends React.Component {
               backgroundColor: '#f0f0f0',
               height: Height - 0,
               width: Width,
-              alignItems:'center'
+              alignItems: 'center',
             }}>
             <View style={styles.DistrictDataContainer}>
               <Text
@@ -368,12 +400,18 @@ class States extends React.Component {
                       keyExtractor={item => item.id}
                       showsVerticalScrollIndicator={false}
                       renderItem={({item}) => this.renderDistrictName(item)}
+                      contentContainerStyle={{
+                        padding: 0,
+                        margin: 0,
+                        width: 120,
+                      }}
                     />
                     <FlatList
                       data={Values}
                       keyExtractor={item => item.id}
                       showsVerticalScrollIndicator={false}
                       renderItem={({item}) => this.renderDistrictData(item)}
+                      contentContainerStyle={{padding: 0, margin: 0}}
                     />
                   </View>
                 </ScrollView>

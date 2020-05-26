@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'blue',
     paddingVertical: 10,
     // paddingHorizontal:20,
-    width: 120,
+    width: 125,
     // height: 45,
     borderRadius: 12,
     elevation: 3,

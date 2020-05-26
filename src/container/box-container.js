@@ -28,6 +28,7 @@ class BoxCon extends React.Component {
           StateName={this.props.StateName}
           countryDataClick={this.props.totalCasesIndia}
           countryData={this.props.TotalCases}
+          CallClearData={this.props.CallClearData}
         />
       </View>
     );

@@ -23,6 +23,8 @@ class StatesCon extends React.Component {
           DistrictFuncClick={this.props.DistrictData}
           DistrictTotalData={this.props.DistrictTotalData}
           DistrictNames={this.props.DistrictNames}
+          CallClearData={this.props.CallClearData}
+          backButton={this.props.backButton}
         />
       </View>
     );

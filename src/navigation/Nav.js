@@ -4,10 +4,11 @@ import React from 'react';
 import FrontPageCon from '../container/FrontPageContainer';
 import BoxCon from '../container/box-container';
 import HelplineNumbersCon from '../container/HelplineNumberCon';
-import News from '../Component/News';
+// import News from '../Component/News';
 // import States from '../Component/box';
-import StatesCon from '../container/statesContainer';
+// import StatesCon from '../container/statesContainer';
 import Resources from '../Component/Resources';
+import NewsContainer from '../container/NewsContainer';
 
 class Navigator extends React.Component {
   render() {
@@ -17,12 +18,13 @@ class Navigator extends React.Component {
       // </View>S
 
       <Router>
-        <Stack key="root">
+        <Stack key="root" navigationBarStyle={{backgroundColor:'#164057'}} >
           <Scene
             initial
             key="FrontPage"
             component={FrontPageCon}
             hideNavBar={true}
+            style
           />
           <Scene key="BoxCon" component={BoxCon} hideNavBar={true} />
           {/* <Scene
@@ -35,15 +37,15 @@ class Navigator extends React.Component {
             key="helplineNo"
             component={HelplineNumbersCon}
             title="Helpline Numbers"
-            titleStyle={{marginLeft: 55, fontSize: 16, color: '#164057'}}
+            titleStyle={{marginLeft: 55, fontSize: 16, color: 'white'}}
             // hideNavBar={true}
           />
           <Scene
             key="News"
-            component={News}
+            component={NewsContainer}
             title={'News'}
-            titleStyle={{fontSize: 16, color: '#164057'}}
-            // hideNavBar={true}
+            titleStyle={{fontSize: 16, color: 'white'}}
+            hideNavBar={true}
           />
 
           <Scene

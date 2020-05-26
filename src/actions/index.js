@@ -83,7 +83,7 @@ export function DistrictData(data) {
         'https://api.covid19india.org/state_district_wise.json',
       );
       const x = response.data[data];
-      // console.log(x["districtData"]);
+      console.log(x);
       dispatch(districtCases(Object.keys(x.districtData), x.districtData));
     } catch (err) {
       console.log('this is error message', err.message);
@@ -120,5 +120,43 @@ export function helplineNos(Numbers) {
   return {
     type: 'HELPLINE_NO',
     NumbersData: Numbers,
+  };
+}
+
+// NEWS API
+
+export function NewsApi() {
+  // console.log("caleed ghm")
+  return async dispatch => {
+    try {
+      const response = await axios.get(
+        'http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=16b19fa967824908bcb304a5a11ddeb7',
+      );
+      // console.log(response.data["articles"]);
+      dispatch(NewsData(response.data.articles));
+    } catch (err) {
+      console.log('this is error message', err.message);
+    }
+  };
+}
+
+export function NewsData(Data) {
+  return {
+    type: 'NEWS_DATA',
+    NewsDataArray: Data,
+  };
+}
+
+// Clear Data
+
+export function CallClearData() {
+  // console.log("caleed ghm")
+  return async dispatch => {
+    dispatch(ClearData());
+  };
+}
+export function ClearData(Data) {
+  return {
+    type: 'CLEAR_DATA',
   };
 }
