@@ -13,9 +13,9 @@ import Buttons from '../Component/atoms/buttons';
 import DataCards from './atoms/DataCards';
 import _ from 'lodash';
 import {ScrollView} from 'react-native-gesture-handler';
-
-const Width = Dimensions.get('window').width;
-const Height = Dimensions.get('window').height;
+import {verticalScale, Height, Width} from '../utils/stylesheetawesomeproject'
+// const Width = Dimensions.get('window').width;
+// const Height = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   Container: {
@@ -216,7 +216,7 @@ class States extends React.Component {
             />
           </View>
         </View>
-        <View style={{height: 300}}>
+        <View style={{height: verticalScale(300)}}>
           <View
             style={{
               flexDirection: 'row',

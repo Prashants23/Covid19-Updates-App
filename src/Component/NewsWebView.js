@@ -12,7 +12,30 @@ import {
 //import all the components we are going to use.
 
 import {WebView} from 'react-native-webview';
-import { Width } from '../utils/stylesheetawesomeproject';
+import {Width} from '../utils/stylesheetawesomeproject';
+
+const styles = StyleSheet.create({
+  stylOld: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  styleNew: {
+    flex: 1,
+  },
+  WebViewStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    // marginTop: 40,
+  },
+  ActivityIndicatorStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+  },
+});
 
 export default class NewsWebView extends Component {
   constructor(props) {
@@ -34,7 +57,13 @@ export default class NewsWebView extends Component {
     return (
       <View
         style={this.state.visible === true ? styles.stylOld : styles.styleNew}>
-        <View style={{height: 60, backgroundColor: '#12394d', width: '100%'}}>
+        <View
+          style={{
+            height: 60,
+            backgroundColor: '#12394d',
+            width: '100%',
+            flexDirection: 'row',
+          }}>
           <TouchableOpacity onPress={this.props.closeModal}>
             <View
               style={{
@@ -46,11 +75,18 @@ export default class NewsWebView extends Component {
                 style={{height: 20, width: 20}}
                 source={require('../assets/arrowback.png')}
               />
-              <Text style={{color: 'white', fontSize: 20, textAlign: 'center', width:Width-40}}>
-                News
-              </Text>
             </View>
           </TouchableOpacity>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+              textAlign: 'center',
+              marginVertical: 10,
+              width: Width - 40,
+            }}>
+          {this.props.title}
+          </Text>
         </View>
         {this.state.visible ? (
           <ActivityIndicator
@@ -78,25 +114,3 @@ export default class NewsWebView extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  stylOld: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  styleNew: {
-    flex: 1,
-  },
-  WebViewStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    // marginTop: 40,
-  },
-  ActivityIndicatorStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-  },
-});

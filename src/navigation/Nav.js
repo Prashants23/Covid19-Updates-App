@@ -9,6 +9,8 @@ import HelplineNumbersCon from '../container/HelplineNumberCon';
 // import StatesCon from '../container/statesContainer';
 import Resources from '../Component/Resources';
 import NewsContainer from '../container/NewsContainer';
+import Instructions from '../Component/CovidInstructions';
+import FirstPage from '../Component/firstPage1';
 
 class Navigator extends React.Component {
   render() {
@@ -18,14 +20,20 @@ class Navigator extends React.Component {
       // </View>S
 
       <Router>
-        <Stack key="root" navigationBarStyle={{backgroundColor:'#164057'}} >
-          <Scene
+        <Stack key="root" navigationBarStyle={{backgroundColor: '#164057'}}>
+          {/* <Scene
             initial
             key="FrontPage"
             component={FrontPageCon}
             hideNavBar={true}
             style
-          />
+          /> */}
+          <Scene
+            initial
+            key="firstPage"
+            component={FirstPage}
+            hideNavBar={true}
+          /> 
           <Scene key="BoxCon" component={BoxCon} hideNavBar={true} />
           {/* <Scene
             key="State"
@@ -47,12 +55,18 @@ class Navigator extends React.Component {
             titleStyle={{fontSize: 16, color: 'white'}}
             hideNavBar={true}
           />
-
+          <Scene
+            key="Instruction"
+            component={Instructions}
+            // title={'Resources'}
+            titleStyle={{fontSize: 16, color: '#164057'}}
+            hideNavBar={true}
+          />
           <Scene
             key="Resources"
             component={Resources}
             title={'Resources'}
-            titleStyle={{fontSize: 16, color: '#164057'}}
+            titleStyle={{fontSize: 16, color: 'white'}}
           />
         </Stack>
       </Router>

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
-import {Height, Width, vertcalScale} from '../utils/stylesheetawesomeproject';
+import {Height, Width, verticalScale} from '../utils/stylesheetawesomeproject';
 import {Actions} from 'react-native-router-flux';
 import NewsWebView from './NewsWebView';
 
@@ -94,7 +94,7 @@ class News extends React.Component {
             }}
             style={{marginTop: 10, borderRadius: 10}}
           />
-          <View style={{height: 190}}>
+          <View style={{height: verticalScale(200)}}>
             <View
               style={{
                 marginTop: 10,
@@ -104,7 +104,8 @@ class News extends React.Component {
                 borderRadius: 8,
               }}>
               <Text
-                style={{fontSize: 18, fontWeight: 'bold', marginHorizontal: 5}}>
+                style={{fontSize: 18, fontWeight: 'bold', marginHorizontal: 5}}
+                numberOfLines={3}>
                 {item.item.title}
               </Text>
               <Text
@@ -114,7 +115,7 @@ class News extends React.Component {
                   lineHeight: 22,
                   marginHorizontal: 8,
                 }}
-                numberOfLines={5}>
+                numberOfLines={6}>
                 {item.item.description}
               </Text>
             </View>
@@ -127,24 +128,24 @@ class News extends React.Component {
               marginRight: 10,
               flexDirection: 'row',
             }}>
-            <View style={{width: 150, marginLeft: 10}}>
+            <View style={{width: '50%', marginLeft: 10}}>
               <Text style={{fontSize: 12, color: 'gray'}}>Published At:</Text>
               <Text style={{fontSize: 12, color: 'gray'}}>
                 {' '}
                 {item.item.publishedAt}
               </Text>
             </View>
-            <View style={{width: 120, alignItems: 'flex-end'}}>
+            <View style={{width: '52%', alignItems: 'flex-end'}}>
               <Text
-                style={{fontSize: 16, color: '#305bbf'}}
+                style={{fontSize: 14, color: '#305bbf'}}
                 onPress={() => this.onpenWebViewModal(item.item.url)}>
                 Read More..
               </Text>
             </View>
             <View />
           </View>
-          <View style={{width: Width - 60, marginTop: 5}}>
-            <Text style={{color: 'gray'}}>
+          <View style={{width: Width - 60, marginTop: 5, marginLeft: 10}}>
+            <Text style={{color: 'gray', fontSize: 12}}>
               Published By: {item.item.source.name}
             </Text>
           </View>
@@ -175,7 +176,7 @@ class News extends React.Component {
           <TouchableOpacity onPress={() => Actions.pop('News')}>
             <View style={{marginLeft: 0}}>
               <Image
-                style={{height: 20, width: 20}}
+                style={{height: 15, width: 15}}
                 source={require('../assets/arrowback.png')}
               />
               {/* <Text onPress={() => Actions.pop('News')}>test</Text> */}
@@ -210,7 +211,15 @@ class News extends React.Component {
             />
           </View>
         ) : (
-          <Text> loading..</Text>
+          <View
+            style={{
+              width: Width,
+              height: Height,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text> loading..</Text>
+          </View>
         )}
 
         <Modal
@@ -220,6 +229,7 @@ class News extends React.Component {
           <NewsWebView
             url={this.state.newsUrl}
             closeModal={this.onCloseModal}
+            title="News"
           />
         </Modal>
       </View>

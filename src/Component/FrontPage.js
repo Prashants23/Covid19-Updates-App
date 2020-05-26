@@ -69,12 +69,18 @@ class FrontPage extends React.Component {
             onsubmit={() => Actions.push('News')}
           />
         </View>
-        <View style={{marginTop: 10}}>
+        <View style={{marginTop: 10, flexDirection:'row'}}>
           <Buttons
-            title={'Covid Helpline'}
+            title={'Helpline'}
             ButtonStyle={styles.butonStyle}
             textStyle={styles.textStyle}
             onsubmit={() => Actions.push('helplineNo')}
+          />
+           <Buttons
+            title={'Instuctions'}
+            ButtonStyle={styles.butonStyle}
+            textStyle={styles.textStyle}
+            onsubmit={() => Actions.push('Instruction')}
           />
         </View>
         <View style={{marginTop: 60}}>
