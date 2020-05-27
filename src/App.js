@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 // import ReactDOM from 'react-dom';
-import {View} from 'react-native';
+import {View, BackHandler, Alert} from 'react-native';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
@@ -20,7 +20,6 @@ class App extends React.Component {
   constructor() {
     super();
   }
-
   render() {
     return (
       <Provider store={store}>

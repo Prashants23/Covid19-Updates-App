@@ -1,8 +1,16 @@
 import {getDayOfWeek, Width, Height} from '../utils/stylesheetawesomeproject';
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Platform, ImageBackground} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  ImageBackground,
+  Alert,
+  BackHandler,
+} from 'react-native';
 import Buttons from './atoms/buttons';
-import {Actions} from 'react-native-router-flux'
+import {Actions} from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     borderBottomWidth: 2,
     borderBottomColor: 'white',
-    paddingVertical:10
+    paddingVertical: 10,
   },
   timeText: {
     fontSize: 30,
@@ -39,8 +47,8 @@ const styles = StyleSheet.create({
     // paddingHorizontal:20,
     width: 65,
     height: 45,
-    borderTopLeftRadius:6,
-    borderBottomLeftRadius:6,
+    borderTopLeftRadius: 6,
+    borderBottomLeftRadius: 6,
     // borderRadius: 6,
     elevation: 4,
     justifyContent: 'center',
@@ -55,8 +63,8 @@ const styles = StyleSheet.create({
     // paddingHorizontal:20,
     width: 65,
     height: 45,
-    borderTopRightRadius:6,
-    borderBottomRightRadius:6,
+    borderTopRightRadius: 6,
+    borderBottomRightRadius: 6,
     // borderRadius: 6,
     elevation: 4,
     justifyContent: 'center',
@@ -178,17 +186,45 @@ export default class App extends Component {
     });
   };
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
+ 
   componentDidMount() {
+    // // BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    // this.setActionsScreen();
     this.timer = setInterval(() => {
       this.getCurrentTime();
     }, 1000);
   }
+  // setActionsScreen=()=>{
+  //   this.setState({Screen:Actions.currentScene})
+  // }
+  // handleBackButton = () => {
+  //   console.log('current Scene', Actions.currentScene);
+  //   switch (Actions.currentScene) {
+  //     case 'firstPage':
+  //       BackHandler.exitApp();
+  //       break;
+
+  //     default:
+  //       Actions.pop();
+  //   }
+  //   // Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+  //   //   {
+  //   //     text: 'Cancel',
+  //   //     onPress: () => null,
+  //   //     style: 'cancel',
+  //   //   },
+  //   //   {text: 'YES', onPress: () => BackHandler.exitApp()},
+  //   // ]);
+  //   return true;
+  // };
+
+  // componentWillUnmount() {
+  //   clearInterval(this.timer);
+  //   // BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  // }
 
   render() {
+    // console.log('current Scene', Actions.currentScene);
     return (
       <View style={styles.container}>
         <ImageBackground

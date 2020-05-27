@@ -1,6 +1,7 @@
-import {Router, Scene, Stack} from 'react-native-router-flux';
+import {Router, Scene, Stack, Actions} from 'react-native-router-flux';
 import React from 'react';
-// import {Text, View, StyleSheet} from 'react-native';
+
+import {Text, View, StyleSheet, BackHandler} from 'react-native';
 import FrontPageCon from '../container/FrontPageContainer';
 import BoxCon from '../container/box-container';
 import HelplineNumbersCon from '../container/HelplineNumberCon';
@@ -13,13 +14,24 @@ import Instructions from '../Component/CovidInstructions';
 import FirstPage from '../Component/firstPage1';
 
 class Navigator extends React.Component {
+  // componentDidMount(){}
+  _backAndroidHandler = () => {
+    const scene = Actions.currentScene;
+    // alert(scene)
+    if (scene === 'firstPage') {
+      BackHandler.exitApp();
+      return true;
+    }
+    Actions.pop();
+    return true;
+  };
   render() {
     return (
       // <View>
       //   <Text>tfjygkhj</Text>
       // </View>S
 
-      <Router>
+      <Router backAndroidHandler={this._backAndroidHandler}>
         <Stack key="root" navigationBarStyle={{backgroundColor: '#164057'}}>
           {/* <Scene
             initial
@@ -33,7 +45,7 @@ class Navigator extends React.Component {
             key="firstPage"
             component={FirstPage}
             hideNavBar={true}
-          /> 
+          />
           <Scene key="BoxCon" component={BoxCon} hideNavBar={true} />
           {/* <Scene
             key="State"
