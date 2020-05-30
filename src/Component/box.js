@@ -13,7 +13,12 @@ import Buttons from '../Component/atoms/buttons';
 import DataCards from './atoms/DataCards';
 import _ from 'lodash';
 import {ScrollView} from 'react-native-gesture-handler';
-import {verticalScale, Height, Width} from '../utils/stylesheetawesomeproject'
+import {
+  verticalScale,
+  Height,
+  Width,
+  horizontalScale,
+} from '../utils/stylesheetawesomeproject';
 // const Width = Dimensions.get('window').width;
 // const Height = Dimensions.get('window').height;
 
@@ -59,10 +64,18 @@ const styles = StyleSheet.create({
     marginVertical: 1,
     fontWeight: 'bold',
   },
+  textStyle: {
+    fontSize: 12,
+    color: 'red',
+    width: 100,
+    textAlign: 'center',
+  },
 
   dataContaner: {
-    width: 90,
-    height: 100,
+    // width: 10,
+    // paddingHorizontal:10,
+    // height: 100,
+    paddingVertical: 10,
     backgroundColor: 'white',
     elevation: 3,
     marginRight: 15,
@@ -77,40 +90,59 @@ const styles = StyleSheet.create({
   DistrictDataContainer: {
     // backgroundColor: '#243e4a',
     backgroundColor: 'white',
-    width: Width - 10,
+    width: Width - 30,
     height: Height,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     // backgroundColor: '#c7e1f0',
     elevation: 6,
     marginTop: 20,
   },
   districtData: {
-    width: 75,
-    // height: 30,
+    // width: horizontalScale(75),
+    // paddingHorizontal:horizontalScale(25),
+    paddingVertical: 10,
     fontSize: 16,
     textAlign: 'center',
     letterSpacing: 1,
-    // backgroundColor:'red',
-    // marginHorizontal:2
-    marginLeft: 1,
-    // flex:0.20,
+    lineHeight: 22,
+    width:"32%"
+    // marginLeft: 1,
+    // backgroundColor:'red'
+  },
+  districtDataStateName:{
+    paddingVertical: 10,
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 16,
+    letterSpacing: 0.5,
+    lineHeight: 22,
+    borderBottomWidth: 1,
+    color: 'gray',
+    // height: 50,
+    borderColor: '#cfcccc',
+    paddingLeft: 5,
+
+    justifyContent: 'center',
   },
   statesHeaderTextContainer: {
     flexDirection: 'row',
     borderBottomColor: 'black',
     borderBottomWidth: 2,
-    height: 40,
+    // height: 40,
+    paddingVertical: verticalScale(14),
     // paddingLeft: 10,
     alignItems: 'center',
     // backgroundColor: '#c44b1b',
   },
   StatesHeaderText: {
-    width: '22%',
+    // paddingHorizontal: horizontalScale(8),
     // alignItems: 'center',
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 15,
     color: '#5c5454',
+    fontWeight: 'bold',
+    // backgroundColor:'red',
   },
   situationTextContainer: {
     backgroundColor: '#ff2930',
@@ -122,7 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     marginLeft: 10,
-    width: '60%',
+    width: '70%',
   },
 });
 class States extends React.Component {
@@ -170,6 +202,7 @@ class States extends React.Component {
         <View
           style={{
             backgroundColor: '#12394d',
+            // backgroundColor:'#181b2e',
             width: Width,
             flexDirection: 'row',
             // justifyContent:'center'
@@ -206,7 +239,7 @@ class States extends React.Component {
           <Text style={styles.situationText}>Situation in {item.state}</Text>
           <View
             style={{
-              width: '50%',
+              width: '30%',
               alignItems: 'center',
               justifyContent: 'center',
             }}>
@@ -229,7 +262,7 @@ class States extends React.Component {
               ImageSource={require('../assets/scan.png')}
               cardTitle="Total Cases"
               cardTitleData={item.confirmed}
-              textColor={'#3d748f'}
+              textStyle={styles.textStyle}
             />
             <DataCards
               dataContainer={styles.dataContaner}
@@ -237,14 +270,16 @@ class States extends React.Component {
               ImageSource={require('../assets/heartbeat.png')}
               cardTitle="Death"
               cardTitleData={item.deaths}
+              textStyle={[styles.textStyle, {color: 'black'}]}
             />
             <DataCards
-              dataContainer={styles.dataContaner}
+              dataContainer={[styles.dataContaner, {marginRight: 0}]}
               CountryDataNo={styles.CountryDataNo}
               ImageSource={require('../assets/patient.png')}
               cardTitle="Recovered"
               cardTitleData={item.recovered}
               textColor={'green'}
+              textStyle={[styles.textStyle, {color: 'green'}]}
             />
           </View>
 
@@ -260,23 +295,24 @@ class States extends React.Component {
               ImageSource={require('../assets/covidImage.png')}
               cardTitle="Active Cases"
               cardTitleData={item.active}
-              textColor={'red'}
+              textStyle={styles.textStyle}
             />
             <DataCards
-              dataContainer={styles.dataContaner}
+              dataContainer={[styles.dataContaner, {marginRight: 0}]}
               CountryDataNo={styles.CountryDataNo}
               ImageSource={require('../assets/Covid.png')}
               cardTitle="Active Rate"
               cardTitleData={item.active_rate}
+              textStyle={styles.textStyle}
             />
-            <DataCards
+            {/* <DataCards
               dataContainer={styles.dataContaner}
               CountryDataNo={styles.CountryDataNo}
               ImageSource={require('../assets/patient.png')}
-              cardTitle="Recovery Rate"
+              cardTitle="Recover Rate"
               cardTitleData={item.recovered_rate}
               textColor={'green'}
-            />
+            /> */}
           </View>
         </View>
         {/* <Buttons
@@ -288,29 +324,19 @@ class States extends React.Component {
   }
   renderDistrictName(item) {
     return (
-      <View
-        style={{
-          borderBottomWidth: 1,
-          color: 'gray',
-          height: 50,
+      // <View
+      //   style={{
+      //     borderBottomWidth: 1,
+      //     color: 'gray',
+      //     // height: 50,
+      //     borderColor: '#cfcccc',
 
-          // width:150,
-          // alignItems: 'center',
-          justifyContent: 'center',
-          // marginLeft: 10,
-          // backgroundColor:'red'
-        }}>
-        <Text
-          style={{
-            fontSize: 17,
-            letterSpacing: 0.5,
-            // textAlign:'center'
-            width: 100,
-            marginLeft: 10,
-          }}>
+      //     justifyContent: 'center',
+      //   }}>
+        <Text style={[styles.districtDataStateName]} numberOfLines={1}>
           {item}
         </Text>
-      </View>
+      // </View>
     );
   }
   renderDistrictData(item) {
@@ -319,14 +345,17 @@ class States extends React.Component {
         style={{
           flexDirection: 'row',
           borderBottomWidth: 1,
-          marginRight: 20,
+          borderColor: '#cfcccc',
+          // marginRight: 10,
           justifyContent: 'center',
           alignItems: 'center',
-          width: 250,
-          height: 50,
-          marginRight: 10,
+          paddingRight: 10,
+          // height: 50,
+          // marginRight: 10,
         }}>
-        <Text style={[styles.districtData, {color: 'red'}]}>{item.active}</Text>
+        <Text style={[styles.districtData, {color: 'red'}]}>
+          {item.confirmed}
+        </Text>
         <Text style={[styles.districtData, {color: 'black'}]}>
           {item.deceased}
         </Text>
@@ -378,43 +407,64 @@ class States extends React.Component {
               <Text
                 style={{
                   marginTop: 10,
-                  color: 'blue',
-                  fontSize: 20,
+                  color: 'gray',
+                  fontSize: 15,
                   textAlign: 'center',
+                  // borderBottomWidth:1,
+                  // width:40
                 }}>
                 District Data
               </Text>
-              <View style={{height: Height - 100}}>
-                <View style={styles.statesHeaderTextContainer}>
-                  <Text style={[styles.StatesHeaderText, {width: 110}]}>
-                    State/UT
-                  </Text>
-                  <Text style={styles.StatesHeaderText}>Total Cases</Text>
-                  <Text style={styles.StatesHeaderText}>Death</Text>
-                  <Text style={styles.StatesHeaderText}>Recovered</Text>
-                </View>
-                <ScrollView nestedScrollEnabled={true}>
-                  <View style={{flexDirection: 'row'}}>
-                    <FlatList
-                      data={this.props.DistrictNames}
-                      keyExtractor={item => item.id}
-                      showsVerticalScrollIndicator={false}
-                      renderItem={({item}) => this.renderDistrictName(item)}
-                      contentContainerStyle={{
-                        padding: 0,
-                        margin: 0,
-                        width: 120,
-                      }}
-                    />
-                    <FlatList
-                      data={Values}
-                      keyExtractor={item => item.id}
-                      showsVerticalScrollIndicator={false}
-                      renderItem={({item}) => this.renderDistrictData(item)}
-                      contentContainerStyle={{padding: 0, margin: 0}}
-                    />
+              <View style={{height: Height - 145}}>
+                <View>
+                  <View style={styles.statesHeaderTextContainer}>
+                    <Text style={[styles.StatesHeaderText, {width: '32%'}]}>
+                      State/UT
+                    </Text>
+                    <Text style={[styles.StatesHeaderText, {width: '22.5%'}]}>
+                      Total Cases
+                    </Text>
+                    <Text style={[styles.StatesHeaderText, {width: '22.5%'}]}>
+                      Death
+                    </Text>
+                    <Text style={[styles.StatesHeaderText, {width: '22.5%'}]}>
+                      Recovered
+                    </Text>
                   </View>
-                </ScrollView>
+                  {this.props.DistrictNames.length > 0 ? (
+                    <ScrollView nestedScrollEnabled={true}>
+                      <View style={{flexDirection: 'row'}}>
+                        <FlatList
+                          data={this.props.DistrictNames}
+                          keyExtractor={item => item.id}
+                          showsVerticalScrollIndicator={false}
+                          renderItem={({item}) => this.renderDistrictName(item)}
+                          // contentContainerStyle={{
+                          //   padding: 0,
+                          //   margin: 0,
+                          //   // width: 120,
+                          // }}
+                        />
+                        <FlatList
+                          data={Values}
+                          keyExtractor={item => item.id}
+                          showsVerticalScrollIndicator={false}
+                          renderItem={({item}) => this.renderDistrictData(item)}
+                          contentContainerStyle={{padding: 0, margin: 0}}
+                        />
+                      </View>
+                    </ScrollView>
+                  ) : (
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 100,
+                      }}>
+                      <Text>loading..</Text>
+                    </View>
+                  )}
+                </View>
               </View>
             </View>
           </View>

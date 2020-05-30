@@ -32,7 +32,12 @@ class Navigator extends React.Component {
       // </View>S
 
       <Router backAndroidHandler={this._backAndroidHandler}>
-        <Stack key="root" navigationBarStyle={{backgroundColor: '#164057'}}>
+        <Stack
+          key="root"
+          navigationBarStyle={{
+            backgroundColor: '#164057',
+            // backgroundColor:'#1f2638',
+          }}>
           {/* <Scene
             initial
             key="FrontPage"

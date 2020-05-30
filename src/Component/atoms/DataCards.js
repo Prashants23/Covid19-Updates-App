@@ -9,13 +9,16 @@ class DataCards extends React.Component {
       ImageSource,
       cardTitle,
       cardTitleData,
-      textColor
+      textStyle,
     } = this.props;
     return (
       <View style={[dataContainer]}>
-        <Image style={{width: 40, height: 40}} source={ImageSource} />
-        <Text style={{marginTop: 3, color: textColor}}>{cardTitle}</Text>
-        <Text style={[CountryDataNo, {color: textColor}]}>{cardTitleData}</Text>
+        <Image
+          style={[textStyle, {width: 40, height: 40}]}
+          source={ImageSource}
+        />
+        <Text style={[textStyle, {marginTop: 3}]}>{cardTitle}</Text>
+        <Text style={[CountryDataNo]}>{cardTitleData}</Text>
       </View>
     );
   }

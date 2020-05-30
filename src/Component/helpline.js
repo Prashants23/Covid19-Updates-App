@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
     // borderColor: 'black',
     paddingLeft: 20,
     borderRadius: 10,
-    marginVertical: 25,
+    // marginVertical: 25,
     borderWidth: 0,
     height: 50,
     // backgroundColor: '#d5e2f5',
-    elevation: 3,
+    // elevation: 3,
   },
   pagetitle: {
     fontSize: 25,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
   },
   statesContainer: {
-    width: '95%',
+    width: Width - 20,
     // marginLeft: 10,
     // backgroundColor: '#12354d',
     // backgroundColor: '#091933',
@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
     paddingLeft: 12,
     marginLeft: 10,
     // paddingRight: 10,
-    height: 110,
+    height: 130,
     paddingTop: 10,
-    // borderRadius: 10,
+    borderRadius: 10,
     // borderWidth: 1,
     elevation: 4,
     alignItems: 'center',
@@ -108,10 +108,10 @@ class HelplineNumbers extends React.Component {
   };
 
   render() {
-    console.log(
-      'helpline props _______________----------------------',
-      this.props,
-    );
+    // console.log(
+    //   'helpline props _______________----------------------',
+    //   this.props,
+    // );
     const filteredStates = this.props.NumbersData.filter(State => {
       return State.state_or_UT
         .toLowerCase()
@@ -124,26 +124,37 @@ class HelplineNumbers extends React.Component {
           <Text>loading....</Text>
         ) : (
           <View style={styles.Container}>
-            <TextInput
-              style={styles.InputBoxStyle}
-              placeholder="Enter State"
-              onChangeText={event => this.onInputChange(event)}
-            />
+            <View
+              style={[
+                styles.InputBoxStyle,
+                {
+                  marginVertical: 20,
+                  borderWidth: 1,
+                  backgroundColor: 'white',
+                  elevation: 6,
+                },
+              ]}>
+              <TextInput
+                style={styles.InputBoxStyle}
+                placeholder="Enter State"
+                onChangeText={event => this.onInputChange(event)}
+              />
+            </View>
             {/* <View
               style={{
                 alignItems: 'center',
                 width: Width,
                 height: Height-180,
               }}> */}
-              {/* <View style={{marginTop: 20,alignItems:'center',width:"100%"}}> */}
-              <FlatList
-                keyExtractor={item => item.state_or_UT}
-                data={filteredStates}
-                // contentContainerStyle={{alignItems:'center',width:"90%",}}
-                numColumns={1}
-                showsVerticalScrollIndicator={false}
-                renderItem={({item}) => this.renderListItem(item)}
-              />
+            {/* <View style={{marginTop: 20,alignItems:'center',width:"100%"}}> */}
+            <FlatList
+              keyExtractor={item => item.state_or_UT}
+              data={filteredStates}
+              // contentContainerStyle={{alignItems:'center',width:"90%",}}
+              numColumns={1}
+              showsVerticalScrollIndicator={false}
+              renderItem={({item}) => this.renderListItem(item)}
+            />
             {/* </View> */}
           </View>
         )}

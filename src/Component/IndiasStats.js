@@ -12,16 +12,19 @@ import {
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 import StatesCon from '../container/statesContainer';
+import {Actions} from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#f0f0f0',
     // alignItems:'center',
+    // backgroundColor:'#181b2e',
     height: Height,
   },
   header: {
     backgroundColor: '#12394d',
     height: 75,
+    // backgroundColor:'#1f2638',
     // borderBottomLeftRadius: Width,
     // borderBottomRightRadius: Width,
     width: Width,
@@ -66,8 +69,8 @@ const styles = StyleSheet.create({
   },
 
   dataContaner: {
-    width: 90,
-    height: 100,
+    width: 100,
+    paddingVertical: 10,
     backgroundColor: 'white',
     elevation: 3,
     marginRight: 15,
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
   },
   statesDataContainer: {
     marginTop: 20,
-    height: '68.5%',
+    height: '67.5%',
     width: Width - 30,
     backgroundColor: 'white',
     elevation: 3,
@@ -87,36 +90,42 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomColor: 'black',
     borderBottomWidth: 2,
-    height: 60,
+    // height: 60,
+    paddingVertical: 10,
     // paddingLeft: 10,
     alignItems: 'center',
   },
   StatesHeaderText: {
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 15,
     color: '#5c5454',
-    width: 75,
+    // width: 75,
+    fontWeight: 'bold',
+    // backgroundColor:'red'
   },
   statesContainer: {
     flexDirection: 'row',
     borderBottomColor: '#cfcccc',
     borderBottomWidth: 1,
     // width: Width - 30,
-    height: 60,
+    // height: 60,
+    paddingVertical: 10,
     // justifyContent:'center'
     alignItems: 'center',
     marginLeft: 10,
   },
   dataStateNameTextStyles: {
-    width: '30%',
+    width: '32%',
     textAlign: 'center',
     fontSize: 16,
     letterSpacing: 0.5,
   },
   casesTextStyle: {
-    width: '25.4%',
+    width: '24.5%',
     textAlign: 'center',
     letterSpacing: 0.5,
+    // backgroundColor:'red',
+    // marginLeft:1
   },
   CountryDataNo: {
     marginTop: 6,
@@ -171,7 +180,16 @@ class IndiaStats extends React.Component {
         {this.props.StateName.length > 0 ? (
           <View>
             <View style={styles.header}>
-              <View style={{marginTop: 10, width: '60%', marginLeft: 10}}>
+              <TouchableOpacity onPress={() => Actions.pop('BoxCon')}>
+                <View style={{marginLeft: 5, marginVertical: 15}}>
+                  <Image
+                    style={{height: 15, width: 15}}
+                    source={require('../assets/arrowback.png')}
+                  />
+                  {/* <Text onPress={() => Actions.pop('News')}>test</Text> */}
+                </View>
+              </TouchableOpacity>
+              <View style={{marginTop: 10, width: '58%', marginLeft: 10}}>
                 <Text style={styles.headerCoronaText}>CORONAVIRUS</Text>
                 <Text style={{fontSize: 25, color: 'white', lineHeight: 30}}>
                   PEDIA
@@ -248,17 +266,32 @@ class IndiaStats extends React.Component {
                 </Text>
               </View>
             </View>
-            <View style={{width: Width, alignItems: 'center'}}>
+            <Text style={{marginTop: 20, textAlign: 'center'}}>
+              Click on the states to view state details
+            </Text>
+            <View
+              style={{
+                width: Width,
+                marginTop: 5,
+                alignItems: 'center',
+                height: Height - 100,
+              }}>
               <View style={styles.statesDataContainer}>
                 <View style={styles.statesHeaderTextContainer}>
                   <Text style={[styles.StatesHeaderText, {width: '32%'}]}>
                     State/UT
                   </Text>
-                  <Text style={styles.StatesHeaderText}>Total Cases</Text>
-                  <Text style={styles.StatesHeaderText}>Death</Text>
-                  <Text style={styles.StatesHeaderText}>Recovered</Text>
+                  <Text style={[styles.StatesHeaderText, {width: '22.5%'}]}>
+                    Total Cases
+                  </Text>
+                  <Text style={[styles.StatesHeaderText, {width: '22.5%'}]}>
+                    Death
+                  </Text>
+                  <Text style={[styles.StatesHeaderText, {width: '22.5%'}]}>
+                    Recovered
+                  </Text>
                 </View>
-                <View style={{height: '83%'}}>
+                <View style={{height: Height - 420}}>
                   <FlatList
                     keyExtractor={item => item.id}
                     data={this.props.StateName}

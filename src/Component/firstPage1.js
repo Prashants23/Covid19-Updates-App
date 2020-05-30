@@ -1,4 +1,9 @@
-import {getDayOfWeek, Width, Height} from '../utils/stylesheetawesomeproject';
+import {
+  getDayOfWeek,
+  Width,
+  Height,
+  verticalScale,
+} from '../utils/stylesheetawesomeproject';
 import React, {Component} from 'react';
 import {
   View,
@@ -6,6 +11,7 @@ import {
   StyleSheet,
   Platform,
   ImageBackground,
+  Image,
   Alert,
   BackHandler,
 } from 'react-native';
@@ -17,59 +23,52 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-end',
-    backgroundColor: '#383838',
+    backgroundColor: '#12394d',
     paddingTop: Platform.OS == 'ios' ? 20 : 0,
   },
   TimeandDateContainer: {
-    width: Width - 120,
+    width: Width - 110,
     marginRight: 30,
     justifyContent: 'center',
-    // backgroundColor:'red',
     alignItems: 'flex-end',
     borderBottomWidth: 2,
     borderBottomColor: 'white',
     paddingVertical: 10,
   },
   timeText: {
-    fontSize: 30,
+    fontSize: 28,
     color: 'white',
     textAlign: 'center',
   },
 
   daysText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     paddingBottom: 0,
   },
   butonStyleStatsHelpLine: {
-    // backgroundColor: 'blue',
     paddingVertical: 10,
-    // paddingHorizontal:20,
-    width: 65,
+    width: 80,
     height: 45,
     borderTopLeftRadius: 6,
     borderBottomLeftRadius: 6,
-    // borderRadius: 6,
     elevation: 4,
     justifyContent: 'center',
     marginHorizontal: 2,
-    borderWidth: 1,
     borderColor: '#3e6d80',
     backgroundColor: 'white',
   },
   butonStyleNewsInstruction: {
-    // backgroundColor: 'blue',
-    paddingVertical: 10,
-    // paddingHorizontal:20,
-    width: 65,
+    width: 80,
     height: 45,
     borderTopRightRadius: 6,
     borderBottomRightRadius: 6,
+    // fontSize:18,
     // borderRadius: 6,
     elevation: 4,
     justifyContent: 'center',
     marginHorizontal: 2,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderColor: '#3e6d80',
     backgroundColor: 'white',
   },
@@ -83,6 +82,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     alignItems: 'flex-end',
     marginTop: 10,
+    // backgroundColor:'red'
   },
 });
 
@@ -186,53 +186,33 @@ export default class App extends Component {
     });
   };
 
- 
   componentDidMount() {
-    // // BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-    // this.setActionsScreen();
     this.timer = setInterval(() => {
       this.getCurrentTime();
     }, 1000);
   }
-  // setActionsScreen=()=>{
-  //   this.setState({Screen:Actions.currentScene})
-  // }
-  // handleBackButton = () => {
-  //   console.log('current Scene', Actions.currentScene);
-  //   switch (Actions.currentScene) {
-  //     case 'firstPage':
-  //       BackHandler.exitApp();
-  //       break;
-
-  //     default:
-  //       Actions.pop();
-  //   }
-  //   // Alert.alert('Hold on!', 'Are you sure you want to go back?', [
-  //   //   {
-  //   //     text: 'Cancel',
-  //   //     onPress: () => null,
-  //   //     style: 'cancel',
-  //   //   },
-  //   //   {text: 'YES', onPress: () => BackHandler.exitApp()},
-  //   // ]);
-  //   return true;
-  // };
-
-  // componentWillUnmount() {
-  //   clearInterval(this.timer);
-  //   // BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-  // }
 
   render() {
     // console.log('current Scene', Actions.currentScene);
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require('../assets/back3.jpg')}
+          source={require('../assets/back89.jpg')}
           style={[styles.container, {width: Width}]}>
           <View style={styles.TimeandDateContainer}>
-            <Text style={[styles.timeText, {fontSize: 50}]}>
-              {/* {this.state.seconds} */}Covid Pedia
+            <Text
+              style={[
+                styles.timeText,
+                {fontSize: 16, width: 270, textAlign: 'right'},
+              ]}>
+              Welcome to
+            </Text>
+            <Text
+              style={[
+                styles.timeText,
+                {fontSize: 40, width: 270, textAlign: 'right'},
+              ]}>
+              Covid Pedia
             </Text>
             <Text style={styles.timeText}>
               {this.state.hour}:{this.state.min}
@@ -276,6 +256,23 @@ export default class App extends Component {
                 onsubmit={() => Actions.push('Instruction')}
               />
             </View>
+          </View>
+          <View style={{height: 50, justifyContent: 'flex-end'}}>
+            {/* <Text
+              style={{
+                textAlign: 'center',
+                color: 'gray',
+                fontSize: 12,
+                width: 200,
+              }}>
+              All the data on this platform has been fetched from these */}
+            <Text
+              onPress={() => Actions.push('Resources')}
+              style={{color: 'gray', fontSize: 18, marginRight: 20}}>
+              {' '}
+              Data Resources{' '}
+            </Text>
+            {/* </Text> */}
           </View>
         </ImageBackground>
       </View>

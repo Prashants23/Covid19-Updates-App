@@ -16,7 +16,7 @@ import NewsWebView from './NewsWebView';
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#12394d',
-    height: 70,
+    height: 40,
     // borderBottomLeftRadius: Width,
     // borderBottomRightRadius: Width,
     width: Width,
@@ -89,7 +89,7 @@ class Instructions extends React.Component {
           }}>
           <View
             style={{
-              height: Height - 95,
+              height: Height - 75,
               width: Width - 20,
               alignItems: 'center',
             }}>
@@ -97,6 +97,10 @@ class Instructions extends React.Component {
               <View style={{marginVertical: 10, alignItems: 'center'}}>
                 <Text style={styles.HeadertextStyle}>
                   Protecting yourself and others from the spread COVID-19
+                </Text>
+                <Text style={{width: Width - 40}}>
+                  Listen for instructions from your local government about
+                  staying at home.
                 </Text>
                 <Text style={{width: Width - 40}}>
                   You can reduce your chances of being infected or spreading
@@ -140,6 +144,10 @@ class Instructions extends React.Component {
                   onPress={this.openModal}
                   style={{fontSize: 18, color: '#243b73'}}>
                   More Instructions
+                </Text>
+                <Text
+                  style={{fontSize: 14, color: 'gray'}}>
+                  Source: World Health Organization
                 </Text>
               </View>
             </ScrollView>

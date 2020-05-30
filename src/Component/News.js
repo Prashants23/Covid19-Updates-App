@@ -15,7 +15,8 @@ import NewsWebView from './NewsWebView';
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#12394d',
-    height: 70,
+    // backgroundColor:'#181b2e',
+    height: 50,
     // borderBottomLeftRadius: Width,
     // borderBottomRightRadius: Width,
     width: Width,
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     // justifyContent:'center'
   },
   headerCoronaText: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     color: 'white',
     // marginLeft: 30,
@@ -104,8 +105,8 @@ class News extends React.Component {
                 borderRadius: 8,
               }}>
               <Text
-                style={{fontSize: 18, fontWeight: 'bold', marginHorizontal: 5}}
-                numberOfLines={3}>
+                style={{fontSize: 17, fontWeight: 'bold', marginHorizontal: 5}}
+                numberOfLines={2}>
                 {item.item.title}
               </Text>
               <Text
@@ -115,7 +116,7 @@ class News extends React.Component {
                   lineHeight: 22,
                   marginHorizontal: 8,
                 }}
-                numberOfLines={6}>
+                numberOfLines={4}>
                 {item.item.description}
               </Text>
             </View>
@@ -137,9 +138,9 @@ class News extends React.Component {
             </View>
             <View style={{width: '52%', alignItems: 'flex-end'}}>
               <Text
-                style={{fontSize: 14, color: '#305bbf'}}
+                style={{fontSize: 14, color: '#305bbf', marginRight:10}}
                 onPress={() => this.onpenWebViewModal(item.item.url)}>
-                Read More..
+                Read More
               </Text>
             </View>
             <View />
