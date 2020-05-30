@@ -40,18 +40,19 @@ const styles = StyleSheet.create({
     // justifyContent:'center'
   },
   headerCoronaText: {
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: 'bold',
     color: 'white',
     // marginLeft: 30,
     // fontStyle:'none',
-    lineHeight: 34,
+    lineHeight: 32,
   },
   situationTextContainer: {
     backgroundColor: '#ff2930',
     height: 25,
     flexDirection: 'row',
     alignItems: 'center',
+    // marginTop:1
   },
   situationText: {
     fontSize: 16,
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   },
   statesDataContainer: {
     marginTop: 20,
-    height: '67.5%',
+    height: Height-340,
     width: Width - 30,
     backgroundColor: 'white',
     elevation: 3,
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
   statesHeaderTextContainer: {
     flexDirection: 'row',
     borderBottomColor: 'black',
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     // height: 60,
     paddingVertical: 10,
     // paddingLeft: 10,
@@ -274,7 +275,7 @@ class IndiaStats extends React.Component {
                 width: Width,
                 marginTop: 5,
                 alignItems: 'center',
-                height: Height - 100,
+                height: Height - 90,
               }}>
               <View style={styles.statesDataContainer}>
                 <View style={styles.statesHeaderTextContainer}>
